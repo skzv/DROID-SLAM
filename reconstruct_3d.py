@@ -65,7 +65,7 @@ def main(reconstruction_path, baseline):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="3D Reconstruction from disparity maps and camera poses.")
-    parser.add_argument("reconstruction_path", type=str, help="Path to the reconstruction data directory")
+    parser.add_argument("--reconstruction_path", type=str, help="Path to the reconstruction data directory")
     parser.add_argument("--baseline", type=float, default=0.54, help="Baseline distance between stereo cameras (in meters)")
     args = parser.parse_args()
 
