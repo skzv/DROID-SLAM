@@ -4,11 +4,11 @@ import open3d as o3d
 import argparse
 
 def load_data(reconstruction_path):
-    tstamps = np.load(f"{reconstruction_path}/tstamps.npy")
-    images = np.load(f"{reconstruction_path}/images.npy")
-    disps = np.load(f"{reconstruction_path}/disps.npy")
-    poses = np.load(f"{reconstruction_path}/poses.npy")
-    intrinsics = np.load(f"{reconstruction_path}/intrinsics.npy")
+    tstamps = np.load(f"reconstructions/{reconstruction_path}/tstamps.npy")
+    images = np.load(f"reconstructions/{reconstruction_path}/images.npy")
+    disps = np.load(f"reconstructions/{reconstruction_path}/disps.npy")
+    poses = np.load(f"reconstructions/{reconstruction_path}/poses.npy")
+    intrinsics = np.load(f"reconstructions/{reconstruction_path}/intrinsics.npy")
     return tstamps, images, disps, poses, intrinsics
 
 def disparity_to_point_cloud(disparity, intrinsic, baseline):
