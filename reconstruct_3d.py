@@ -1,13 +1,14 @@
 import numpy as np
 import cv2
 import open3d as o3d
+import argparse
 
 def load_data(reconstruction_path):
-    tstamps = np.load(f"reconstructions/{reconstruction_path}/tstamps.npy")
-    images = np.load(f"reconstructions/{reconstruction_path}/images.npy")
-    disps = np.load(f"reconstructions/{reconstruction_path}/disps.npy")
-    poses = np.load(f"reconstructions/{reconstruction_path}/poses.npy")
-    intrinsics = np.load(f"reconstructions/{reconstruction_path}/intrinsics.npy")
+    tstamps = np.load(f"{reconstruction_path}/tstamps.npy")
+    images = np.load(f"{reconstruction_path}/images.npy")
+    disps = np.load(f"{reconstruction_path}/disps.npy")
+    poses = np.load(f"{reconstruction_path}/poses.npy")
+    intrinsics = np.load(f"{reconstruction_path}/intrinsics.npy")
     return tstamps, images, disps, poses, intrinsics
 
 def disparity_to_point_cloud(disparity, intrinsic, baseline):
@@ -63,6 +64,9 @@ def main(reconstruction_path, baseline):
     o3d.io.write_triangle_mesh("reconstruction_mesh.ply", mesh)
 
 if __name__ == "__main__":
-    reconstruction_path = 'your_reconstruction_path'  # Change this to your path
-    baseline = 0.54  # Example baseline, in meters
-    main(reconstruction_path, baseline)
+    parser = argparse.ArgumentParser(description="3D Reconstruction from disparity maps and camera poses.")
+    parser.add_argument("reconstruction_path", type=str, help="Path to the reconstruction data directory")
+    parser.add_argument("--baseline", type=float, default=0.54, help="Baseline distance between stereo cameras (in meters)")
+    args = parser.parse_args()
+
+    main(args.reconstruction_path, args.baseline)
