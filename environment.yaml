@@ -20,3 +20,4 @@ dependencies:
   - suitesparse
   - matplotlib
   - pyyaml
+  - mkl==2024.0
