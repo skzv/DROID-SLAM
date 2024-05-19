@@ -21,3 +21,4 @@ dependencies:
   - matplotlib
   - pyyaml
   - mkl==2024.0
+  - cudatoolkit-dev
